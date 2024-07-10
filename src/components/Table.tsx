@@ -41,7 +41,6 @@ const Table = ({
     if (loading) {
         return <Loader type="box-rotate-z" title={"Loading"} size={100} />
     }
-    console.log(data)
     return (
         <div>
             <button onClick={refreshData}>Re-fetch Data</button>
