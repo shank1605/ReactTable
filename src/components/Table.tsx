@@ -22,7 +22,6 @@ interface Props {
     setCurrentPage: (page: number) => void
     viewAll: boolean
     setViewAll: (viewAll: boolean) => void
-    refreshData: () => void
 }
 
 const Table = ({
@@ -36,14 +35,13 @@ const Table = ({
     setCurrentPage,
     viewAll,
     setViewAll,
-    refreshData,
 }: Props) => {
     if (loading) {
         return <Loader type="box-rotate-z" title={"Loading"} size={100} />
     }
+    const handleView = () => setViewAll(!viewAll)
     return (
         <div>
-            <button onClick={refreshData}>Re-fetch Data</button>
             <table>
                 <UserTableHeader columns={columns} sortOrder={sortOrder} handleSort={handleSort} />
                 <UserTableBody data={data} columns={columns} />
@@ -52,7 +50,7 @@ const Table = ({
                 {!viewAll && (
                     <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
                 )}
-                <button onClick={() => setViewAll(!viewAll)}>
+                <button onClick={handleView}>
                     {viewAll ? 'View Paginated' : 'View All'}
                 </button>
             </footer>

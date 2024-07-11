@@ -8,7 +8,7 @@ interface TableConfig<T> {
   itemsPerPage: number
 }
 
-const useTable = <T,>({ fetchData, defaultSortField, itemsPerPage }: TableConfig<T>) => {
+const useTable = <T>({ fetchData, defaultSortField, itemsPerPage = 5 }: TableConfig<T>) => {
   const [data, setData] = useState<T[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [currentPage, setCurrentPage] = useState<number>(1)

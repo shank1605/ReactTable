@@ -5,6 +5,7 @@ import { User } from '../types/User'
 import Table from '../components/Table'
 
 const TablePage: React.FC = () => {
+    // Here we use the useTable hook to separate the logic of fetching data from the table component
     const {
         data: users,
         loading,
@@ -36,6 +37,7 @@ const TablePage: React.FC = () => {
     return (
         <div>
             <h1>User List</h1>
+            {!loading && <button onClick={loadData}>Re-fetch Data</button>}
             <Table
                 data={users}
                 columns={columns as any}
@@ -47,7 +49,6 @@ const TablePage: React.FC = () => {
                 setCurrentPage={setCurrentPage}
                 viewAll={viewAll}
                 setViewAll={setViewAll}
-                refreshData={loadData}
             />
         </div>
     )

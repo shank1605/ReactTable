@@ -6,18 +6,22 @@ interface Props {
     setCurrentPage: (page: number) => void
 }
 
-const Pagination: React.FC<Props> = ({ currentPage, totalPages, setCurrentPage }) => (
-    <div>
-        <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
-            Previous
-        </button>
-        <span>
-            Page {currentPage} of {totalPages}
-        </span>
-        <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>
-            Next
-        </button>
-    </div>
-)
+const Pagination: React.FC<Props> = ({ currentPage, totalPages, setCurrentPage }) => {
+    const handleNext = () => setCurrentPage(currentPage + 1)
+    const handlePrevious = () => setCurrentPage(currentPage - 1)
+    return (
+        <div>
+            <button disabled={currentPage === 1} onClick={handlePrevious}>
+                Previous
+            </button>
+            <span>
+                Page {currentPage} of {totalPages}
+            </span>
+            <button disabled={currentPage === totalPages} onClick={handleNext}>
+                Next
+            </button>
+        </div>
+    )
+}
 
 export default Pagination
